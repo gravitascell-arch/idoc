@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDOC.ai | Inteligencia Artificial para Minería de Vanguardia</title>
+    <style>
+        :root {
+            --bg-main: #060b13;
+            --bg-card: #0d1527;
+            --accent-cyan: #00f2fe;
+            --accent-copper: #f39c12;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        header {
+            background-color: rgba(6, 11, 19, 0.95);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-cyan);
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px 20px;
+            background: radial-gradient(circle at center, #0d1b3a 0%, var(--bg-main) 70%);
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            max-width: 1000px;
+            font-weight: 800;
+        }
+
+        .hero h1 span.cyan { color: var(--accent-cyan); }
+        .hero h1 span.copper { color: var(--accent-copper); }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, var(--accent-cyan), #4facfe);
+            color: #000;
+            padding: 15px 35px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.5);
+        }
+
+        /* Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        h2 span {
+            color: var(--accent-cyan);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-cyan);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 242, 254, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card.mining::before { background: var(--accent-copper); }
+
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .card ul {
+            margin-top: 15px;
+            list-style: none;
+        }
+
+        .card ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+        }
+
+        /* Interactive Simulator Section */
+        .simulator-box {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            padding: 50px;
+            border: 1px solid rgba(0, 242, 254, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .sim-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--accent-cyan);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-main);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            border-radius: 6px;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .form-group select:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        .calc-btn {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .calc-btn:hover {
+            background: rgba(0, 242, 254, 0.1);
+        }
+
+        .result-display {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(6, 11, 19, 0.6);
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+
+        .result-val {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #2ecc71;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #03060a;
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.4rem; }
+            header { padding: 20px; }
+            nav { display: none; }
+            .simulator-box { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">IDOC<span>.ai</span></div>
+        <nav>
+            <a href="#soluciones">Minería Inteligente</a>
+            <a href="#reclutamiento">Reclutamiento IA</a>
+            <a href="#hdsi">Simulador HDSI</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Modelos de IA Avanzada para <span class="cyan">Minería Crítica</span> e <span class="copper">Innovación Operativa</span></h1>
+        <p>Rompiendo la burocracia de seguridad tradicional. Implementamos analítica en tiempo real para proteger vidas en faena y optimizar la selección experta de capital humano.</p>
+        <a href="#hdsi" class="btn">Evaluar Operación en Faena</a>
+    </section>
+
+    <!-- Section 1: Mining and Innovation -->
+    <section class="container" id="soluciones">
+        <h2>Inteligencia Artificial Aplicada a la <span>Gran Minería</span></h2>
+        <div class="grid">
+            <div class="card mining">
+                <h3>⛏️ Gestión de Riesgos Críticos</h3>
+                <p>Monitoreo algorítmico diseñado para anticipar derivas operacionales en tareas de alto riesgo, actuando antes de que ocurran incidentes graves.</p>
+                <ul>
+                    <li>Predicción de fatiga activa en tiempo real</li>
+                    <li>Control telemétrico inteligente de flotas pesadas</li>
+                    <li>Sistemas dinámicos de alerta perimetral</li>
+                </ul>
+            </div>
+            <div class="card mining">
+                <h3>💡 Modelos de Ruta Predictiva</h3>
+                <p>Algoritmos avanzados que cruzan variables geográficas del entorno para adelantarse a contingencias críticas en carreteras y faenas de montaña.</p>
+                <ul>
+                    <li>Mitigación analítica frente a aluviones</li>
+                    <li>Detección temprana de pérdida de visibilidad</li>
+                    <li>Optimización inteligente de flujos de transporte</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: AI Recruitment -->
+    <section class="container" style="background-color: rgba(13, 21, 39, 0.3);" id="reclutamiento">
+        <h2>Reclutamiento Automatizado y <span>Estrategia de Talento</span></h2>
+        <div class="grid">
+            <div class="card">
